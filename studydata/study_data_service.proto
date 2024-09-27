@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/protobuf/empty.proto";
+
+option java_package = "researchstack.backend.grpc";
+option java_multiple_files = true;
+
+service StudyDataService {
+  rpc AddStudyDataFile(AddStudyDataFileRequest) returns (google.protobuf.Empty);
+}
+
+message AddStudyDataFileRequest{
+  string study_id = 1;
+  string file_path = 2;
+  string file_name = 3;
+}

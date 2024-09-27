@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "task/task_result.proto";
+import "task/task_spec.proto";
+
+option java_multiple_files = true;
+
+service TaskService {
+  rpc GetTaskSpecs(TaskSpecRequest) returns (TaskSpecResponse);
+  rpc GetAllTaskSpecs(google.protobuf.Empty) returns (TaskSpecResponse);
+  rpc GetAllNewTaskSpecs(AllNewTaskRequest) returns (TaskSpecResponse);
+  rpc UploadTaskResult(TaskResultUploadRequest) returns (google.protobuf.Empty);
+}
+
+message TaskSpecRequest {
+  string study_id = 1;
+}
+
+message AllNewTaskRequest {
+  google.protobuf.Timestamp last_sync_time = 1;
+}
+
+message TaskSpecResponse {
+  repeated TaskSpec task_specs = 1;
+}
+
+message TaskResultUploadRequest{
+  TaskResult task_result = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "applog/app_log.proto";
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+
+service AppLogService {
+  rpc SendAppLog(AppLog) returns (google.protobuf.Empty);
+}

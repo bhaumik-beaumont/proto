@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "researchstack.backend.grpc";
+option java_multiple_files = true;
+
+message IrbInfo {
+  IrbDecisionType decision_type = 1;
+  google.protobuf.Timestamp decided_at = 2;
+  google.protobuf.Timestamp expired_at = 3;
+}
+
+enum IrbDecisionType {
+  IRB_DECISION_TYPE_UNSPECIFIED = 0;
+  IRB_DECISION_TYPE_EXEMPT = 1;
+  IRB_DECISION_TYPE_APPROVED = 2;
+}

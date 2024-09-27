@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/protobuf/timestamp.proto";
+import "task/activity_task.proto";
+import "task/survey_task.proto";
+
+option java_multiple_files = true;
+
+message TaskSpec{
+  string id = 1;
+  string study_id = 2;
+  string title = 3;
+  string description = 4;
+  string schedule = 5;
+  google.protobuf.Timestamp start_time = 6;
+  google.protobuf.Timestamp end_time = 7;
+  int64 valid_min = 8;
+  oneof task{
+    ActivityTask activity_task = 9;
+    SurveyTask survey_task = 10;
+  }
+  string duration = 11;
+  string icon_url = 12;
+  bool in_clinic = 13;
+}

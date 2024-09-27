@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/protobuf/empty.proto";
+import "healthdata/health_data.proto";
+
+option java_multiple_files = true;
+
+service HealthDataService {
+  rpc SyncHealthData(HealthDataSyncRequest) returns (google.protobuf.Empty);
+  rpc SyncBatchHealthData(BatchHealthDataSyncRequest)
+      returns (google.protobuf.Empty);
+}
+
+message HealthDataSyncRequest {
+  HealthData health_data = 1;
+  repeated string study_ids = 2;
+}
+
+message BatchHealthDataSyncRequest {
+  repeated HealthData health_data = 1;
+  repeated string study_ids = 2;
+}

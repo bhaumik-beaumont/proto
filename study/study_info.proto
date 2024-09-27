@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/type/date.proto";
+
+option java_package = "researchstack.backend.grpc";
+option java_multiple_files = true;
+
+message StudyInfo {
+  string name = 1;
+  string description = 2;
+  StudyParticipationApprovalType participation_approval_type = 3;
+  StudyScope scope = 4;
+  StudyStage stage = 5;
+  string logo_url = 6;
+  string image_url = 7;
+  string organization = 8;
+  string duration = 9;
+  string period = 10;
+  repeated string requirements = 11;
+  int64 target_subject = 12;
+  google.type.Date start_date = 13;
+  google.type.Date end_date = 14;
+  string target_device = 15;
+  string reference_device = 16;
+}
+
+enum StudyParticipationApprovalType {
+  STUDY_PARTICIPATION_APPROVAL_TYPE_UNSPECIFIED = 0;
+  STUDY_PARTICIPATION_APPROVAL_TYPE_AUTO = 1;
+  STUDY_PARTICIPATION_APPROVAL_TYPE_MANUAL = 2;
+}
+
+enum StudyScope {
+  STUDY_SCOPE_UNSPECIFIED = 0;
+  STUDY_SCOPE_PUBLIC = 1;
+  STUDY_SCOPE_PRIVATE = 2;
+}
+
+enum StudyStage {
+  STUDY_STAGE_UNSPECIFIED = 0;
+  STUDY_STAGE_CREATED = 1;
+  STUDY_STAGE_STARTED_OPEN = 2;
+  STUDY_STAGE_STARTED_CLOSED = 3;
+  STUDY_STAGE_STOPPED_REQUEST = 4;
+  STUDY_STAGE_STOPPED_FORCE = 5;
+  STUDY_STAGE_COMPLETED = 6;
+}

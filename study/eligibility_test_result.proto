@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "task/task_result.proto";
+
+option java_package = "researchstack.backend.grpc";
+option java_multiple_files = true;
+
+message EligibilityTestResult {
+  TaskResult.SurveyResult result = 1;
+}

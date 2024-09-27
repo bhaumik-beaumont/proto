@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+option java_multiple_files = true;
+
+message SurveyTask {
+  repeated Section sections = 1;
+}
+
+message Section {
+  repeated Question questions = 1;
+}
+
+message Question {
+  string id = 1;
+  string title = 2;
+  string explanation = 3;
+  TAG tag = 4;
+  oneof item_properties {
+    ChoiceProperties choice_properties = 5;
+    ScaleProperties scale_properties = 6;
+    TextProperties text_properties = 7;
+    RankingProperties ranking_properties = 8;
+    DateTimeProperties date_time_properties = 9;
+  }
+  bool required = 10;
+
+  message ChoiceProperties {
+    repeated Option options = 1;
+  }
+
+  message ScaleProperties {
+    int32 low = 1;
+    int32 high = 2;
+    string low_label = 3;
+    string high_label = 4;
+  }
+
+  message TextProperties {
+  }
+
+  message RankingProperties {
+    repeated Option options = 1;
+  }
+
+  message DateTimeProperties {
+    bool is_time = 1;
+    bool is_date = 2;
+    bool is_range = 3;
+  }
+
+  enum TAG {
+    TAG_UNSPECIFIED = 0;
+    TAG_SLIDER = 1;
+    TAG_RADIO = 2;
+    TAG_CHECKBOX = 3;
+    TAG_IMAGE = 4;
+    TAG_DROPDOWN = 5;
+    TAG_DATETIME = 6;
+    TAG_TEXT = 7;
+    TAG_RANK = 8;
+  }
+
+  message Option {
+    string value = 1;
+    string label = 2;
+  }
+}

@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/protobuf/empty.proto";
+import "healthdata/health_data.proto";
+import "study/eligibility_test.proto";
+import "study/eligibility_test_result.proto";
+import "study/informed_consent.proto";
+import "study/signed_informed_consent.proto";
+import "study/study.proto";
+
+option java_package = "researchstack.backend.grpc";
+option java_multiple_files = true;
+
+service StudyService {
+  rpc GetStudy(GetStudyRequest)
+      returns (GetStudyResponse) {}
+  rpc GetStudyByParticipationCode(GetStudyByParticipationCodeRequest)
+      returns (GetStudyByParticipationCodeResponse) {}
+  rpc GetStudyList(google.protobuf.Empty)
+      returns (GetStudyListResponse) {}
+  rpc GetPublicStudyList(google.protobuf.Empty)
+      returns (GetPublicStudyListResponse) {}
+  rpc GetParticipatedStudyList(google.protobuf.Empty)
+      returns (GetParticipatedStudyListResponse) {}
+  rpc GetParticipationRequirementList(GetParticipationRequirementListRequest)
+      returns (GetParticipationRequirementListResponse) {}
+  rpc GetEligibilityTest(GetEligibilityTestRequest)
+      returns (GetEligibilityTestResponse) {}
+  rpc GetEligibilityTestResult(GetEligibilityTestResultRequest)
+      returns (GetEligibilityTestResultResponse) {}
+  rpc GetInformedConsent(GetInformedConsentRequest)
+      returns (GetInformedConsentResponse) {}
+  rpc GetSignedInformedConsent(GetSignedInformedConsentRequest)
+      returns (GetSignedInformedConsentResponse) {}
+  rpc GetRequiredHealthDataTypeList(GetRequiredHealthDataTypeListRequest)
+      returns (GetRequiredHealthDataTypeListResponse) {}
+  rpc ParticipateInStudy(ParticipateInStudyRequest)
+      returns (ParticipateInStudyResponse) {}
+  rpc WithdrawFromStudy(WithdrawFromStudyRequest)
+      returns (google.protobuf.Empty) {}
+}
+
+message GetStudyRequest {
+  string study_id = 1;
+}
+
+message GetStudyResponse {
+  Study study = 1;
+}
+
+message GetStudyByParticipationCodeRequest {
+  string participation_code = 1;
+}
+
+message GetStudyByParticipationCodeResponse {
+  Study study = 1;
+}
+
+message GetStudyListResponse {
+  repeated Study studies = 1;
+}
+
+message GetPublicStudyListResponse {
+  repeated Study studies = 1;
+}
+
+message GetParticipatedStudyListResponse {
+  repeated Study studies = 1;
+}
+
+message GetParticipationRequirementListRequest {
+  string study_id = 1;
+}
+
+message GetParticipationRequirementListResponse {
+  EligibilityTest eligibility_test = 1;
+  InformedConsent informed_consent = 2;
+  repeated HealthData.HealthDataType data_types = 3;
+}
+
+message GetEligibilityTestRequest {
+  string study_id = 1;
+}
+
+message GetEligibilityTestResponse {
+  EligibilityTest eligibility_test = 1;
+}
+
+message GetEligibilityTestResultRequest {
+  string study_id = 1;
+}
+
+message GetEligibilityTestResultResponse {
+  EligibilityTestResult eligibility_test_result = 1;
+}
+
+message GetInformedConsentRequest {
+  string study_id = 1;
+}
+
+message GetInformedConsentResponse {
+  InformedConsent informed_consent = 1;
+}
+
+message GetSignedInformedConsentRequest {
+  string study_id = 1;
+}
+
+message GetSignedInformedConsentResponse {
+  SignedInformedConsent signed_informed_consent = 1;
+}
+
+message GetRequiredHealthDataTypeListRequest {
+  string study_id = 1;
+}
+
+message GetRequiredHealthDataTypeListResponse {
+  repeated HealthData.HealthDataType data_types = 1;
+}
+
+message ParticipateInStudyRequest {
+  string study_id = 1;
+  EligibilityTestResult eligibility_test_result = 2;
+  SignedInformedConsent signed_informed_consent = 3;
+}
+
+message ParticipateInStudyResponse {
+  string subject_number = 1;
+}
+
+message WithdrawFromStudyRequest {
+  string study_id = 1;
+}

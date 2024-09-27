@@ -1,0 +1,196 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+
+message TaskResult{
+  string study_id = 1;
+  string task_id = 2;
+  google.protobuf.Timestamp started_at = 3;
+  google.protobuf.Timestamp finished_at = 4;
+  int32 time_offset = 7;
+  oneof result {
+    SurveyResult survey_result = 5;
+    ActivityResult activity_result = 6;
+  }
+
+  message SurveyResult {
+    repeated QuestionResult question_results = 1;
+  }
+
+  message QuestionResult {
+    string id = 1;
+    string result = 2;
+  }
+
+  message ActivityResult{
+    oneof data {
+      TappingSpeed tapping_speed = 1;
+      ReactionTime reaction_time = 2;
+      GuidedBreathing guided_breathing = 3;
+      RangeOfMotion range_of_motion = 4;
+      GaitAndBalance gait_and_balance = 5;
+      StroopTest stroop_test = 6;
+      SpeechRecognition speech_recognition = 7;
+      MobileSpirometry mobile_spirometry = 8;
+      SustainedPhonation sustained_phonation = 9;
+      EcgMeasurement ecg_measurement = 10;
+      FiveMeterWalkTest five_meter_walk_test = 11;
+      StateBalanceTest state_balance_test = 12;
+      RombergTest romberg_test = 13;
+      SitToStand sit_to_stand = 14;
+      OrthostaticBp orthostatic_bp = 15;
+      BiaMeasurement bia_measurement = 16;
+      BpMeasurement bp_measurement = 17;
+      PpgMeasurement ppg_measurement = 18;
+      Spo2Measurement spo2_measurement = 19;
+      BpAndBiaMeasurement bp_and_bia_measurement = 20;
+      StableMeasurement stable_measurement = 21;
+      ShapePainting shape_painting = 22;
+      CatchLadybug catch_ladybug = 23;
+      Memorize memorize = 24;
+      MemorizeWordsStart memorize_words_start = 25;
+      MemorizeWordsEnd memorize_words_end = 26;
+      DescribeImage describe_image = 27;
+      ReadTextAloud read_text_aloud = 28;
+      AnswerVerbally answer_verbally = 29;
+      AnswerWritten answer_written = 30;
+    }
+
+    // It must be modified according to each data type
+    message TappingSpeed {
+      string result = 1;
+    }
+
+    message ReactionTime {
+      string result = 1;
+    }
+
+    message GuidedBreathing {
+      string result = 1;
+    }
+
+    message RangeOfMotion {
+      string result = 1;
+    }
+
+    message GaitAndBalance {
+      string result = 1;
+    }
+
+    message StroopTest {
+      string result = 1;
+    }
+
+    message SpeechRecognition {
+      string result = 1;
+    }
+
+    message MobileSpirometry {
+      string file_path = 1;
+    }
+
+    message SustainedPhonation {
+      string result = 1;
+    }
+
+    message FiveMeterWalkTest {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message StateBalanceTest {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message RombergTest {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message SitToStand {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message OrthostaticBp {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message BiaMeasurement {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message BpMeasurement {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message EcgMeasurement {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message PpgMeasurement {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message Spo2Measurement {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message BpAndBiaMeasurement {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message StableMeasurement {
+      google.protobuf.Timestamp start_time = 1;
+      google.protobuf.Timestamp end_time = 2;
+    }
+
+    message ShapePainting {
+      string result = 1;
+    }
+
+    message CatchLadybug {
+      string result = 1;
+    }
+
+    message Memorize {
+      string result = 1;
+    }
+
+    message MemorizeWordsStart {
+      string result = 1;
+    }
+
+    message MemorizeWordsEnd {
+      string result = 1;
+    }
+
+    message DescribeImage {
+      string result = 1;
+    }
+
+    message ReadTextAloud {
+      string result = 1;
+    }
+
+    message AnswerVerbally {
+      string result = 1;
+    }
+
+    message AnswerWritten {
+      string result = 1;
+    }
+  }
+}

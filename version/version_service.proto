@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/protobuf/empty.proto";
+
+service VersionService {
+  rpc GetApplicationVersion(google.protobuf.Empty)
+    returns (GetApplicationVersionResponse) {}
+
+  rpc UpdateApplicationVersion(UpdateApplicationVersionRequest)
+    returns (google.protobuf.Empty) {}
+}
+
+message GetApplicationVersionResponse {
+  string minimum = 1;
+  string latest = 2;
+}
+
+message UpdateApplicationVersionRequest {
+  string minimum = 1;
+  string latest = 2;
+}

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/type/date.proto";
+
+option java_multiple_files = true;
+
+message SubjectProfile {
+  string first_name = 1;
+  string last_name = 2;
+  google.type.Date birthday = 3;
+  string email = 4;
+  string phone_number = 5;
+  string address = 6;
+  string office_phone_number = 7;
+  string company = 8;
+  string team = 9;
+}
+
+enum SubjectStatus {
+  SUBJECT_STATUS_UNSPECIFIED = 0;
+  SUBJECT_STATUS_PARTICIPATING = 1;
+  SUBJECT_STATUS_WITHDRAWN = 2;
+  SUBJECT_STATUS_DROP = 3;
+  SUBJECT_STATUS_COMPLETED = 4;
+}

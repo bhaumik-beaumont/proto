@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/protobuf/empty.proto";
+import "subject/subject_profile.proto";
+
+option java_multiple_files = true;
+
+service Subject {
+  rpc RegisterSubject(RegisterSubjectRequest) returns (google.protobuf.Empty);
+  rpc DeregisterSubject(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc GetSubjectProfile(google.protobuf.Empty) 
+	returns (GetSubjectProfileResponse);
+  rpc GetSubjectStatus(GetSubjectStatusRequest)
+	returns (GetSubjectStatusResponse);
+  rpc UpdateSubjectProfile(UpdateSubjectProfileRequest)
+      returns (google.protobuf.Empty);
+}
+
+message RegisterSubjectRequest {
+  SubjectProfile subject_profile = 1;
+}
+
+message GetSubjectProfileResponse {
+  SubjectProfile subject_profile = 1;
+}
+
+message GetSubjectStatusRequest {
+  string study_id = 1;
+}
+
+message GetSubjectStatusResponse {
+  SubjectStatus subject_status = 1;
+}
+
+message UpdateSubjectProfileRequest {
+  SubjectProfile subject_profile = 1;
+}

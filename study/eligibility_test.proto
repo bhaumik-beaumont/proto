@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+import "google/type/date.proto";
+import "google/type/timeofday.proto";
+import "task/survey_task.proto";
+
+option java_package = "researchstack.backend.grpc";
+option java_multiple_files = true;
+
+message EligibilityTest {
+  SurveyTask survey_task = 1;
+  repeated Answer answers = 2;
+
+  message Answer {
+    string question_id = 1;
+    oneof item_properties {
+      ChoiceAnswers choice_answers = 2;
+      ScaleAnswers scale_answers = 3;
+      TextAnswers text_answers = 4;
+      RankingAnswers ranking_answers = 5;
+      DateTimeAnswers date_time_answers = 6;
+    }
+  }
+
+  message ChoiceAnswers {
+    repeated Option options = 1;
+  }
+
+  message ScaleAnswers {
+    int32 from = 1;
+    int32 to = 2;
+  }
+
+  message TextAnswers {
+    repeated string answers = 1;
+  }
+
+  message RankingAnswers{
+    repeated string answers = 1;
+  }
+
+  message DateTimeAnswers {
+    google.type.Date from_date = 1;
+    google.type.Date to_date = 2;
+    google.type.TimeOfDay from_time = 3;
+    google.type.TimeOfDay to_time = 4;
+  }
+
+  message Option {
+    string value = 1;
+    string label = 2;
+  }
+}

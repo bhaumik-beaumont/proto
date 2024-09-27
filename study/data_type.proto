@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package researchstack.backend.grpc;
+
+option java_package = "researchstack.backend.grpc";
+option java_multiple_files = true;
+
+message DataType {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string collection_method = 4;
+  int64 max_trial = 5;
+  int64 target_trial = 6;
+  int64 duration_threshold = 7;
+}
