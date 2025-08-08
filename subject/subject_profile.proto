@@ -16,6 +16,7 @@ message SubjectProfile {
   string office_phone_number = 7;
   string company = 8;
   string team = 9;
+  int32 gender = 10;
 }
 
 enum SubjectStatus {
